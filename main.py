@@ -56,25 +56,31 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
     """
     # TODO: Implement function
     conv_1x1_L7 = tf.layers.conv2d(vgg_layer7_out, num_classes, 1, padding='same',
+                                kernel_initializer = tf.random_normal_initializer(stddev=0.01),
                                 kernel_regularizer = tf.contrib.layers.l2_regularizer(1e-3))
 
     upsample1 = tf.layers.conv2d_transpose(conv_1x1_L7, num_classes, 4, (2, 2), padding='same',
+                                kernel_initializer = tf.random_normal_initializer(stddev=0.01),
                                 kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
 
     conv_1x1_L4 = tf.layers.conv2d(vgg_layer4_out, num_classes, 1, padding='same',
+                                kernel_initializer = tf.random_normal_initializer(stddev=0.01),
                                 kernel_regularizer = tf.contrib.layers.l2_regularizer(1e-3))
 
     skip_L1 = tf.add(upsample1, conv_1x1_L4)
 
-    upsample2 = tf.layers.conv2d_transpose(conv_1x1_L4, num_classes, 4, (2, 2), padding='same',
+    upsample2 = tf.layers.conv2d_transpose(skip_L1, num_classes, 4, (2, 2), padding='same',
+                                kernel_initializer = tf.random_normal_initializer(stddev=0.01),
                                 kernel_regularizer = tf.contrib.layers.l2_regularizer(1e-3))
 
     conv_1x1_L3 = tf.layers.conv2d(vgg_layer3_out, num_classes, 1, padding='same',
+                                kernel_initializer = tf.random_normal_initializer(stddev=0.01),
                                 kernel_regularizer = tf.contrib.layers.l2_regularizer(1e-3))
 
     skip_L2 = tf.add(upsample2, conv_1x1_L3)
 
     upsample3 = tf.layers.conv2d_transpose(skip_L2, num_classes, 16, (8, 8), padding='same',
+                                kernel_initializer = tf.random_normal_initializer(stddev=0.01),
                                 kernel_regularizer = tf.contrib.layers.l2_regularizer(1e-3))
 
     return upsample3
@@ -172,7 +178,7 @@ def run():
 
         logits, train_op, cross_entropy_loss = optimize(layer_output, correct_label, learning_rate, num_classes)
         # TODO: Train NN using the train_nn function
-        epochs = 12
+        epochs = 50 
         batch_size = 5
 
         saver = tf.train.Saver()
