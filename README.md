@@ -1,6 +1,6 @@
 # CarND Segmentation Segmentation - Gaspard Shen
 
-In this project, we need label the pixels of the road in images instead of the bounding box. To achieve that goal, we use the Fully Convolutional Network(FCN) and implementation is based on the FCN-8 architecture developed from Berkely paper "Fully Convolutional Networks for Semantic Segmentation". In the end, I can identify the pixels of the road in the images quite well.
+In this project, we need label the pixels of the road in images instead of the bounding box. To achieve that goal, we use the Fully Convolutional Network(FCN) and implementation is based on the FCN-8 architecture developed from Berkely paper "Fully Convolutional Networks for Semantic Segmentation". In the end, I can identify the pixels of the road in the images quite well.
 
 ![](/Results/FCNs.png)
 
